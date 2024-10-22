@@ -1,3 +1,5 @@
+/* Main.css */
+
 body {
     display: flex;
     justify-content: center;
@@ -6,12 +8,14 @@ body {
     background-color: #111111;
     box-sizing: border-box;
 }
+
 .full-box {
     margin-top: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .wordle-grid {
     width: 25rem;
     height: 25rem;
@@ -52,30 +56,16 @@ body {
     border: solid rgb(161, 161, 161) 4px;
 }
 
-.key.green {
-    background-color: #6aaa64;
-    color: white;
-  }
-
-  .key.yellow {
-    background-color: #c9b458;
-    color: white;
-  }
-
-  .key.grey {
-    background-color: #787c7e;
-    color: white;
-  }
-
-.green{
+/* Letter colors */
+.green {
     background-color: rgb(148, 202, 65);
 }
 
-.yellow{
+.yellow {
     background-color: rgb(188, 188, 36);
 }
 
-.grey{
+.grey {
     background-color: grey;
 }
 
@@ -106,4 +96,54 @@ body {
     height: 3.5rem;
 }
 
+.wide-key{
+    width: 5rem;
+}
 
+.key.green {
+    background-color: #6aaa64;
+    color: white;
+}
+
+.key.yellow {
+    background-color: #c9b458;
+    color: white;
+}
+
+.key.grey {
+    background-color: #787c7e;
+    color: white;
+}
+
+/* Message Styles */
+.message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    min-width: 200px;
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+.message.success {
+    background-color: #4CAF50;
+}
+
+/* Play Again Button */
+.play-again-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}

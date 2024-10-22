@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./Main.css"
+import "./Main.css";
+import words from "../../components/words.json";
 
 const Home = () => {
-  const targetWord = "REACT";
+  const [targetWord, setTargetWord] = useState("");
   const [currentGuess, setCurrentGuess] = useState("");
   const [guesses, setGuesses] = useState(["", "", "", "", "", ""]);
   const [currentRow, setCurrentRow] = useState(0);
@@ -10,6 +11,23 @@ const Home = () => {
   const [message, setMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
   const [keyboardColors, setKeyboardColors] = useState({});
+
+  // Load a random word from words.json file on component mount
+  useEffect(() => {
+    startNewGame();
+  }, []);
+
+  const startNewGame = () => {
+    const randomIndex = Math.floor(Math.random() * words.length);
+    setTargetWord(words[randomIndex].toUpperCase());
+    setCurrentGuess("");
+    setGuesses(["", "", "", "", "", ""]);
+    setCurrentRow(0);
+    setGameOver(false);
+    setMessage("");
+    setShowMessage(false);
+    setKeyboardColors({});
+  };
 
   useEffect(() => {
     if (message) {
@@ -31,12 +49,10 @@ const Home = () => {
   const updateKeyboardColors = () => {
     const newColors = {};
 
-    // Go through all submitted guesses
     for (let row = 0; row < guesses.length; row++) {
       const guess = guesses[row];
       if (!guess) continue;
 
-      // First pass: mark green letters
       for (let i = 0; i < guess.length; i++) {
         const letter = guess[i];
         if (letter === targetWord[i]) {
@@ -44,19 +60,15 @@ const Home = () => {
         }
       }
 
-      // Second pass: mark yellow and grey letters
       for (let i = 0; i < guess.length; i++) {
         const letter = guess[i];
-        // Skip if already marked green
         if (newColors[letter] === "green") continue;
 
         if (targetWord.includes(letter)) {
-          // Only mark yellow if not already marked
           if (!newColors[letter]) {
             newColors[letter] = "yellow";
           }
         } else {
-          // Only mark grey if not already marked
           if (!newColors[letter]) {
             newColors[letter] = "grey";
           }
@@ -65,6 +77,15 @@ const Home = () => {
     }
 
     setKeyboardColors(newColors);
+  };
+
+  const handlePlayAgain = () => {
+    setGuesses(["", "", "", "", "", ""]);
+    setCurrentRow(0);
+    setCurrentGuess("");
+    setGameOver(false);
+    setMessage("");
+    setKeyboardColors({});
   };
 
   const handleLetterClick = (letter) => {
@@ -134,22 +155,7 @@ const Home = () => {
   return (
     <div className="full-box">
       {showMessage && (
-        <div style={{
-          position: 'fixed',
-          top: '20px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          backgroundColor: gameOver ? "#4CAF50" : "#f44336",
-          color: "white",
-          padding: "10px 20px",
-          borderRadius: "5px",
-          zIndex: 1000,
-          transition: 'opacity 0.3s ease',
-          opacity: showMessage ? 1 : 0,
-          boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-          minWidth: '200px',
-          textAlign: 'center'
-        }}>
+        <div className={`message ${gameOver ? "success" : ""}`}>
           {message}
         </div>
       )}
@@ -199,12 +205,7 @@ const Home = () => {
         </div>
 
         <div className="keyboard-row">
-          <button
-            className="key"
-            onClick={handleEnter}
-            disabled={gameOver}
-            style={{ width: "4.5rem" }}
-          >
+          <button className="key wide-key" onClick={handleEnter} disabled={gameOver}>
             Enter
           </button>
           {"ZXCVBNM".split("").map((letter) => (
@@ -217,16 +218,17 @@ const Home = () => {
               {letter}
             </button>
           ))}
-          <button
-            className="key"
-            onClick={handleBackspace}
-            disabled={gameOver}
-            style={{ width: "4.5rem" }}
-          >
-            ←
+          <button className="key" onClick={handleBackspace} disabled={gameOver}>
+            ⌫
           </button>
         </div>
       </div>
+
+      {gameOver && (
+        <button className="play-again-btn" onClick={handlePlayAgain}>
+          Play Again
+        </button>
+      )}
     </div>
   );
 };
