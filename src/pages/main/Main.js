@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Main.css";
 import words from "../../components/words.json";
 
@@ -12,12 +12,8 @@ const Home = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [keyboardColors, setKeyboardColors] = useState({});
 
-  // Load a random word from words.json file on component mount
-  useEffect(() => {
-    startNewGame();
-  }, []);
-
-  const startNewGame = () => {
+  // Memoized function to start a new game
+  const startNewGame = useCallback(() => {
     const randomIndex = Math.floor(Math.random() * words.length);
     setTargetWord(words[randomIndex].toUpperCase());
     setCurrentGuess("");
@@ -27,7 +23,12 @@ const Home = () => {
     setMessage("");
     setShowMessage(false);
     setKeyboardColors({});
-  };
+  }, []);
+
+  // useEffect to start a new game on mount
+  useEffect(() => {
+    startNewGame();
+  }, [startNewGame]);
 
   useEffect(() => {
     if (message) {
@@ -42,11 +43,7 @@ const Home = () => {
     }
   }, [message, gameOver]);
 
-  useEffect(() => {
-    updateKeyboardColors();
-  }, [guesses]);
-
-  const updateKeyboardColors = () => {
+  const updateKeyboardColors = useCallback(() => {
     const newColors = {};
 
     for (let row = 0; row < guesses.length; row++) {
@@ -77,28 +74,35 @@ const Home = () => {
     }
 
     setKeyboardColors(newColors);
-  };
+  }, [guesses, targetWord]);
 
-  const handlePlayAgain = () => {
+  useEffect(() => {
+    updateKeyboardColors();
+  }, [guesses, updateKeyboardColors]);
+
+  const handlePlayAgain = useCallback(() => {
     setGuesses(["", "", "", "", "", ""]);
     setCurrentRow(0);
     setCurrentGuess("");
     setGameOver(false);
     setMessage("");
     setKeyboardColors({});
-  };
+  }, []);
 
-  const handleLetterClick = (letter) => {
-    if (currentGuess.length < 5 && !gameOver) {
-      setCurrentGuess(currentGuess + letter);
-    }
-  };
+  const handleLetterClick = useCallback(
+    (letter) => {
+      if (currentGuess.length < 5 && !gameOver) {
+        setCurrentGuess(currentGuess + letter);
+      }
+    },
+    [currentGuess, gameOver]
+  );
 
-  const handleBackspace = () => {
-    setCurrentGuess(currentGuess.slice(0, -1));
-  };
+  const handleBackspace = useCallback(() => {
+    setCurrentGuess((prev) => prev.slice(0, -1));
+  }, []);
 
-  const handleEnter = () => {
+  const handleEnter = useCallback(() => {
     if (currentGuess.length !== 5) {
       setMessage("Word must be 5 letters!");
       return;
@@ -120,9 +124,9 @@ const Home = () => {
       return;
     }
 
-    setCurrentRow(currentRow + 1);
+    setCurrentRow((prev) => prev + 1);
     setCurrentGuess("");
-  };
+  }, [currentGuess, currentRow, guesses, targetWord]);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -139,7 +143,7 @@ const Home = () => {
 
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [currentGuess, currentRow, gameOver]);
+  }, [handleEnter, handleBackspace, handleLetterClick, gameOver]);
 
   const getLetterColor = (rowIndex, position) => {
     if (rowIndex > currentRow) return "";
