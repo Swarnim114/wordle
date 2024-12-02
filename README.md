@@ -1,5 +1,7 @@
 
 # Unlimited Wordle
+### Live Link
+[Click here to visit the live site](https://unlimitedwordle.vercel.app/)
 
 ## 🎮 **Play Unlimited Wordle Every Day!**
 
