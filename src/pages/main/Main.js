@@ -158,6 +158,7 @@ const Home = () => {
 
   return (
     <div className="full-box">
+      <div className="title"> Unlimited Wordle</div>
       {showMessage && (
         <div className={`message ${gameOver ? "success" : ""}`}>
           {message}

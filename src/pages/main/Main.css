@@ -147,3 +147,9 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
 }
+
+.title{
+    color:aliceblue ;
+    font-size: 4rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
