@@ -1,70 +1,80 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Unlimited Wordle
+### Live Link
+[Click here to visit the live site](https://unlimitedwordle.vercel.app/)
 
-## Available Scripts
+## 🎮 **Play Unlimited Wordle Every Day!**
 
-In the project directory, you can run:
+Welcome to **Unlimited Wordle**, a fun and interactive clone of the popular Wordle game, made with **React**. This app allows you to play Wordle without any daily limits, so you can practice your word-guessing skills as much as you want!
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📸 **Features**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Unlimited Gameplay**: No more waiting for tomorrow! Play Wordle as many times as you want each day.
+- **Real-time Feedback**: Get instant feedback on your guesses with color-coded hints for each letter.
+- **Responsive Design**: Enjoy smooth gameplay on any device, from desktop to mobile.
+- **Clean UI**: Simple, user-friendly interface to keep the focus on the game.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🔧 **Technologies Used**
 
-### `npm run build`
+- **React**: The foundation of the app, providing a fast and responsive user interface.
+- **CSS**: For styling and creating a visually appealing layout.
+- **JavaScript**: To implement game logic and interactions.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 **How to Run the Project Locally**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To run this project locally, follow the steps below:
 
-### `npm run eject`
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/unlimited-wordle.git
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **Navigate to the project directory**:
+   ```bash
+   cd unlimited-wordle
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Install the dependencies**:
+   ```bash
+   npm install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. **Run the app**:
+   ```bash
+   npm start
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   This will start the app on [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 💡 **How the Game Works**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Start Guessing**: Type in a 5-letter word and hit Enter.
+2. **Feedback**:
+   - **Green**: Correct letter in the correct position.
+   - **Yellow**: Correct letter, wrong position.
+   - **Gray**: Letter is not in the word at all.
+3. **Unlimited Plays**: You can keep playing the game without any daily restrictions!
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📷 **Screenshots & Demo**
 
-### Analyzing the Bundle Size
+### Screenshot 1
+![Screenshot 1](samples/image1.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Screenshot 2
+![Screenshot 2](samples/image2.png)
 
-### Making a Progressive Web App
+---
+### Watch the Demo Video
+[Video Link](https://vimeo.com/1035126956/dd2afd37a4?share=copy)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
